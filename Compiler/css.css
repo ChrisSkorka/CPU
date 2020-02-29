@@ -1,0 +1,313 @@
+/*Standard ------------------------------------------------------------------------------*/
+
+*{
+	margin:0px;
+	padding:0px;
+	font-family:arial;
+}
+
+.button{
+	padding:5px;
+	padding-left:10px;
+	padding-right:10px;
+	border-radius:3px;
+	border:1px #FF8800 solid;
+	color:#FF8800;
+	background:#FFFFFF;
+	margin:5px;
+}
+
+.button:hover{
+	color:#FFFFFF;
+	background:#FF8800;
+}
+
+textArea{
+	padding:5px;
+	padding-left:10px;
+	padding-right:10px;
+	border-radius:3px;
+	border:1px #FF8800 solid;
+}
+
+.textInput{
+	padding:5px;
+	padding-left:10px;
+	padding-right:10px;
+	border-radius:3px;
+	border:1px #FF8800 solid;;
+	background:#FFFFFF;
+}
+
+::selection {
+  background:#FF8800;
+  color:#FFFFFF;
+}
+
+/*Main Grid -----------------------------------------------------------------------------*/
+
+body {
+	display: grid;
+	grid-template-rows:auto auto auto 1fr;
+	grid-template-columns:minmax(300px, 1fr) minmax(360px, auto) auto auto;
+	height:100%;
+	width:100%;
+}
+#header{
+	grid-row:1 / span 1;
+	grid-column:1 / span 4;
+	
+	padding:15px;
+	background:#ff8800;
+	color:#FFFFFF;
+}
+#codeEditor{
+	grid-row:2 / span 4;
+	grid-column:1 / span 1;
+	
+	position:relative;
+	
+	display: grid;
+	grid-template-rows:auto;
+	grid-template-columns:min-content auto;
+	
+	overflow:scroll;
+	
+	max-height:100%;
+}
+#reference{
+	grid-row:2 / span 4;
+	grid-column:2 / span 1;
+	
+	position:relative;
+	overflow:scroll;
+	max-height:100%;
+}
+#memory{
+	grid-row:2 / span 1;
+	grid-column:3 / span 1;
+	padding:10px;
+}
+#preview{
+	grid-row:2 / span 1;
+	grid-column:4 / span 1;
+	padding:10px;
+}
+#programOutput{
+	grid-row:3 / span 1;
+	grid-column:3 / span 2;
+	padding:10px;
+}
+#inputFile{
+	grid-row:4 / span 1;
+	grid-column:4 / span 1;
+	
+	padding:10px;
+}
+#outputFile{
+	grid-row:4 / span 1;
+	grid-column:3 / span 1;
+	
+	padding:10px;
+}
+
+/*Editor --------------------------------------------------------------------------------*/
+
+#editor{
+	width:50%;
+	
+	border-radius:3px;
+	border:1px #888888 solid;
+}
+#editor.p{
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box; 
+	width:100%;
+	height:100%;
+	
+	padding:10px;
+	
+	word-break: break-all;
+}
+
+/*Editor: Components --------------------------------------------------------------------*/
+
+#codeLines{
+	grid-row:1 / span 1;
+	grid-column:1 / span 1;
+	overflow:visible;
+	text-align:right;
+	
+	padding-top:10px;
+	padding-bottom:10px;
+	
+	background:#EEEEEE;
+}
+
+#colorCode, #codeInput{
+	grid-row:1 / span 1;
+	grid-column:2 / span 1;
+	
+	position:absolute;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box; 
+	
+	display: block;
+	overflow:visible;
+	
+	padding:10px;
+	padding-left:3px;
+	margin:0px;
+	border:0px;
+	
+	min-width:100%;
+	min-height:100%;
+	font-family:monospace;
+	font-size:16px;
+	line-height:1.2em;
+}
+
+#colorCode *, #codeInput *, #codeLines *{
+	font-family:monospace;
+	font-size:16px;
+	line-height:1.2em;
+}
+
+#codeInput{
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box; 
+	
+	width:100%;
+	background:rgba(0,0,0,0);
+	color:rgba(0,0,0,0);
+	caret-color:rgba(0,0,0,1);
+	overflow:auto;
+	resize:none;
+	white-space:nowrap;
+}
+#codeInput:focus{
+	outline:none;
+}
+
+#codeLines div, #colorCode div{
+	line-height:1.2em;
+}
+
+#codeLines div{
+	padding-left:10px;
+	padding-right:5px;
+	color:#888888;
+	
+	min-width:3ch;
+	
+	cursor:default;
+}
+
+.comment{
+	font-style:italic;
+	color:#008800;
+}
+.lable{
+	font-style:bold;
+	color:#0055DD;
+}
+.opcode{
+	color:#DD5500;
+}
+.operand{
+	color:#666666;
+}
+.error{
+	background:rgba(255, 0, 0, 0.3) !important;
+	color:#FFFFFF !important;
+}
+.selected{
+	background:rgba(0, 0, 255, 0.3) !important;
+	color:#FFFFFF !important;
+}
+
+/*Reference Table -----------------------------------------------------------------------*/
+
+#referenceTable{
+	border-top:1px solid rgba(0,0,0,0.2);
+}
+#reference h4{
+	padding:10px;
+}
+#referenceTable td{
+	padding:5px;
+	border-spacing:0px;
+}
+#referenceTable td:not(:last-child){
+	border-right:1px solid rgba(0,0,0,0.2);
+}
+#referenceTable tr:first-child{
+	color:#FF8800;
+}
+#referenceTable tr:nth-child(2n){
+	background:rgba(0,0,0,0.05);
+}
+
+/*File input / output -------------------------------------------------------------------*/
+
+#fileList{
+	list-style-type:none;
+}
+
+#fileList li input{
+	padding:5px;
+	border:1px solid #FF8800;
+	border-bottom:0px;
+}
+
+#fileList li:first-child input{
+	border-top-left-radius:3px;
+	border-top-right-radius:3px;
+}
+
+#fileList li:last-child input{
+	border-bottom-left-radius:3px;
+	border-bottom-right-radius:3px;
+	border:1px solid #FF8800;
+}
+
+#fileList li input:hover, .selectedFile{
+	background:#FF8800;
+	color:#FFFFFF;
+}
+
+#fileName{
+	color:#FF8800;
+}
+
+/*Memory --------------------------------------------------------------------------------*/
+
+#memory{
+	width:50%;
+}
+
+#memoryTable tr td:first-child{
+	color:#ff8800;
+	padding-right:10px;
+}
+
+/*Output --------------------------------------------------------------------------------*/
+
+#output{
+	width: 100%;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box; 
+	max-width:100%;
+	min-height:150px;
+}
+
+/*Preview -------------------------------------------------------------------------------*/
+
+#screen{
+	color:#ff8800;
+	font-family:monospace;
+}

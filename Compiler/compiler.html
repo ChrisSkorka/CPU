@@ -1,0 +1,170 @@
+<html>
+	<head>
+		<script src="js.js"></script>
+		<link rel="stylesheet" href="css.css"></style>
+		
+	</head>
+	<body onload="begin()">
+		<div id="header">
+			<h3>
+				Logisim CPU Compiler / Emulator
+			</h3>
+		</div>
+		<div id="codeEditor">
+			<div id="codeLines">
+				<div id="line1">1</div>
+			</div>
+			
+			<pre id="colorCode"></pre>
+			<!--
+			<pre id="codeInput" contenteditable oninput="compile()"></pre>
+			-->
+			<textarea id="codeInput" oninput="compile()" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"></textarea>
+			
+		</div>
+		<div id="reference">
+			<h4>Reference</h4>
+			<table id="referenceTable" cellspacing="0" cellpadding="0">
+				<tr>
+					<td>Code</td>
+					<td>Opperation</td>
+					<td>Operand</td>
+				</tr>
+			</table>
+		</div>
+		<div id="memory">
+			<table id="memoryTable">
+				<thead>
+					<h4>Memory</h4>
+				</thead>
+			</table>
+		</div>
+		<div id="preview">
+			<table id="stateTable">
+				<thead>
+					<h4>CPU State</h4>
+				</thead>
+				<tr>
+					<td colspan="2">
+						<p>
+							<input class="button" value="Run" type="button" onclick="CPUrun()"></input>
+							<input class="button" value="Pause" type="button" onclick="CPUpause()"></input>
+							<input class="button" value="Step" type="button" onclick="CPUstep()"></input>
+						</p>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2">
+						<p>
+							<input class="button" value="Reset" type="button" onclick="CPUreset()"></input>
+							<input id="frequency" class="textInput" value="10" type="number" width="50px"></input>Hz
+						</p>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2">
+						<textarea id="screen" rows="10" cols="33" readonly maxlength="320" wrap="hard"></textarea>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<span>Keyboard</span>
+					</td>
+					<td>
+						<textarea id="keyboard" class="textInput" type="text" rows="1" cols="32" maxlength="32"></textarea>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<span>PC</span>
+					</td>
+					<td>
+						<span id="statePC">00</span>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<span>IR</span>
+					</td>
+					<td>
+						<span id="stateIR">00</span>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<span>SP</span>
+					</td>
+					<td>
+						<span id="stateSP">00</span>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<span>A</span>
+					</td>
+					<td>
+						<span id="stateA">00</span>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<span>B</span>
+					</td>
+					<td>
+						<span id="stateB">00</span>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<span>X</span>
+					</td>
+					<td>
+						<span id="stateX">00</span>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<span>Y</span>
+					</td>
+					<td>
+						<span id="stateY">00</span>
+					</td>
+					
+				</tr>
+			</table>
+		</div>
+		<div id="programOutput">
+			<p>
+				<h4>Output</h4>
+			</p>
+			<textarea id="output" readonly></textarea>
+		</div>
+		<div id="outputFile">
+			<p>
+				<h4>Output</h4>
+			</p>
+			<p>
+				<input class="button" value="Save" type="button" onclick="saveFile()"></input>
+				<input class="button" value="New" type="button" onclick="newFile()"></input>
+			</p>
+			<p>
+				<span>Current File: "</span><span id="fileName">file.txt</span><span>"</span><span id="fileUnsaved"> (unsaved)</span>
+			</p>
+		</div>
+		<div id="inputFile">
+			<p>
+				<h4>Input</h4>
+			</p>
+			<p>
+				<input class="button" value="Load" type="button" onclick="loadFile()"></input>
+				<input class="button" value="Delete" type="button" onclick="deleteFile()"></input>
+			</p>
+			<ul id="fileList">
+				<li><input type="text" value="file" readonly></input></li>
+				<li><input class="selectedFile" type="text" value="file" readonly></input></li>
+				<li><input type="text" value="file" readonly></input></li>
+				
+			</u>
+		</div>
+	</body>
+</html>
