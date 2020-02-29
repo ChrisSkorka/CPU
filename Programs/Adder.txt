@@ -1,0 +1,23 @@
+Start	WFI
+	SCNA
+	PRA
+	SUB Ascii
+	TAB
+	PRNT #' '
+	PRNT #'+'
+	PRNT #' '
+	WFI
+	SCNA
+	PRA
+	SUB Ascii
+	ABA
+	ADD Ascii
+	PRNT #' '
+	PRNT #'='
+	PRNT #' '
+	PRA
+	PRNT #$A
+	BRA Start
+Ascii	.BYTE '0
+
+49 47 3F 11 1F 4A 43 20 43 2B 43 20 49 47 3F 11 1F 01 0A 1F 43 20 43 3D 43 20 3F 43 0A 66 00 30

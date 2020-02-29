@@ -1,0 +1,13 @@
+	LDB #0
+	LDX #0
+Loop	LDA X,Word
+	CMPA
+	BEQ Finish
+	PRA
+	INCX
+	BRA Loop
+Finish	END
+	.ORG $10
+Word	.STR "Hello World! :)"
+
+27 00 2B 00 25 10 60 69 0D 3F 17 66 04 8D 00 00 48 65 6C 6C 6F 20 57 6F 72 6C 64 21 20 3A 29

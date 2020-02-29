@@ -1,0 +1,97 @@
+Start	WFI
+	SCNA
+	PRA
+	SUB Ascii
+	CMP #$A
+	BLS skipHexA
+	
+	SUB hexDiff
+	
+skipHexA	TAB
+	PRNT #' '
+	PRNT #'x'
+	PRNT #' '
+	WFI
+	SCNA
+	PRA
+	SUB Ascii
+	CMP #$A
+	BLS skipHexB
+	
+	SUB hexDiff
+	
+skipHexB	STA varA
+	STB varB
+	
+	PRNT #' '
+	PRNT #'='
+	PRNT #' '
+
+	LDX #8
+	LDY #1
+
+	STX bitCount
+	STY bitSel
+	
+	LDA #0
+loop	LDB varA
+	LDX varB
+	LDY bitSel
+	
+	ANDI
+	LDY #0
+	CMPI
+	BEQ skip
+	
+	ABA
+skip	SHLB
+	STB varA
+	LDB bitSel
+	SHLB
+	STB bitSel
+	
+	LDX bitCount
+	DECX
+	STX bitCount
+	LDY #0
+	CMPI
+	BNE loop
+	
+	TAX
+	LDB #%11110000
+	LDY #%00001111
+	ANDA
+	ANDI
+		
+	SHRA
+	SHRA
+	SHRA
+	SHRA
+
+	ADD Ascii
+	CMP #'9
+	BLE skipHexX0
+	
+	ADD #7
+	
+skipHexX0	PRA
+	TXA
+	
+	ADD Ascii
+	CMP #'9
+	BLE skipHexX1
+	
+	ADD hexDiff
+	
+skipHexX1	PRA	
+	
+	PRNT #$A
+	BRA Start
+
+
+Ascii	.BYTE '0
+hexDiff	.BYTE 7;chars between 0 and A
+varA	.BYTE 0
+varB	.BYTE 0
+bitSel	.BYTE 1
+bitCount	.BYTE 8
