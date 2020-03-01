@@ -2,6 +2,21 @@ var m = new Array(256);
 var lineMap = new Array(256);
 var instructionSet = [
 ["NOP", 1, "No Opperation"],
+["GOS", 1, "Go to Subroutine"],
+["RTN", 1, "Return"],
+["END", 1, "End execution"],
+["MBA", 1, "A <= A * B"],
+["MAB", 1, "B <= A * B"],
+["MYX", 1, "X <= X * Y"],
+["MXY", 1, "Y <= X * Y"],
+["MYA", 1, "A <= A * Y"],
+["MAY", 1, "Y <= A * Y"],
+["MBX", 1, "X <= X * B"],
+["MXB", 1, "B <= X * B"],
+["MUL #", 2, "A <= A * #"],
+["MUL", 2, "A <= A * M"],
+["MUL X,", 2, "A <= A * M"],
+["MUL Y,", 2, "A <= A * M"],
 ["ABA", 1, "A <= A + B"],
 ["AAB", 1, "B <= A + B"],
 ["AYX", 1, "X <= X + Y"],
@@ -140,9 +155,6 @@ var instructionSet = [
 ["CLM X,", 2, "Clear M"],
 ["CLM Y,", 2, "Clear M"],
 ["CLD", 1, "Clear Display"],
-["GOS", 1, "Go to Subroutine"],
-["RTN", 1, "Return"],
-["END", 1, "End execution"],
 [".ORG", 2, "Skip to memory location"],
 [".BYTE", 1, "Byte"],
 [".STR", 2, "String"],
@@ -758,6 +770,21 @@ function CPUstep(){
 	
 	switch(instruction){
 		case "NOP":break;
+		case "GOS":
+		case "RTN":
+		case "END":clearInterval(loop); loop = null; incPC = false; break;
+		case "MBA":A = B * A; break;
+		case "MAB":B = A * B; break;
+		case "MYX":X = Y * X; break;
+		case "MXY":Y = X * Y; break;
+		case "MYA":A = Y * A; break;
+		case "MAY":Y = A * Y; break;
+		case "MBX":X = B * X; break;
+		case "MXB":B = X * B; break;
+		case "MUL #":A *= operand; break;
+		case "MUL":A *= m[operand]; break;
+		case "MUL X,":A *= m[operand + X]; break;
+		case "MUL Y,":A *= m[operand + Y]; break;
 		case "ABA":A = B + A; break;
 		case "AAB":B = A + B; break;
 		case "AYX":X = Y + X; break;
@@ -925,10 +952,7 @@ function CPUstep(){
 		case "CLM":m[operand] = 0; break;
 		case "CLM X,":m[operand + X] = 0; break;
 		case "CLM Y,":m[operand + Y] = 0; break;
-		case "CLD":screen = [];
-		case "GOS":
-		case "RTN":
-		case "END":clearInterval(loop); loop = null; incPC = false; break;
+		case "CLD":screen = []; break;
 	}
 	
 	

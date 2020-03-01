@@ -1,0 +1,20 @@
+	LDB #0
+	LDX #0
+Loop	LDA X,Word
+	CMPA
+	BEQ Next
+	PRA
+	INCX
+	BRA Loop
+
+Next	PRNT #10
+Print	WFI
+	SCNA
+	PRA
+	BRA Print
+
+Finish	END
+	.ORG $10
+Word	.STR "Hello World! :)"
+
+36 00 3A 00 34 15 6F 78 0D 4E 26 75 04 52 0A 58 56 4E 75 0F 03 48 65 6C 6C 6F 20 57 6F 72 6C 64 21 20 3A 29

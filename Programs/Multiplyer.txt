@@ -20,43 +20,12 @@ skipHexA	TAB
 	
 	SUB hexDiff
 	
-skipHexB	STA varA
-	STB varB
+skipHexB	MBA
 	
 	PRNT #' '
 	PRNT #'='
 	PRNT #' '
 
-	LDX #8
-	LDY #1
-
-	STX bitCount
-	STY bitSel
-	
-	LDA #0
-loop	LDB varA
-	LDX varB
-	LDY bitSel
-	
-	ANDI
-	LDY #0
-	CMPI
-	BEQ skip
-	
-	ABA
-skip	SHLB
-	STB varA
-	LDB bitSel
-	SHLB
-	STB bitSel
-	
-	LDX bitCount
-	DECX
-	STX bitCount
-	LDY #0
-	CMPI
-	BNE loop
-	
 	TAX
 	LDB #%11110000
 	LDY #%00001111
@@ -72,7 +41,7 @@ skip	SHLB
 	CMP #'9
 	BLE skipHexX0
 	
-	ADD #7
+	ADD hexDiff	
 	
 skipHexX0	PRA
 	TXA
@@ -95,3 +64,5 @@ varA	.BYTE 0
 varB	.BYTE 0
 bitSel	.BYTE 1
 bitCount	.BYTE 8
+
+58 56 4E 20 46 71 0A 7A 0B 20 47 59 52 20 52 78 52 20 58 56 4E 20 46 71 0A 7A 1D 20 47 04 52 20 52 3D 52 20 5D 36 F0 3E 0F 8C 8F 65 65 65 65 19 46 71 39 7C 37 19 47 4E 5E 19 46 71 39 7C 41 19 47 4E 52 0A 75 00 30 07 00 00 01 08
