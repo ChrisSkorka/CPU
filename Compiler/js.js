@@ -2,7 +2,8 @@ var m = new Array(256);
 var lineMap = new Array(256);
 var instructionSet = [
 ["NOP", 1, "No Opperation"],
-["GOS", 1, "Go to Subroutine"],
+["GTS", 2, "Go to Subroutine"],
+["GTSA", 2, "Go to Subroutine at @M"],
 ["RTN", 1, "Return"],
 ["END", 1, "End execution"],
 ["MBA", 1, "A <= A * B"],
@@ -258,7 +259,7 @@ function displayMemory(){
 	var string = "";
 	
 	for(var y = 0; y < 16; y++){
-		var tr = table.rows[y];
+		var tr = table.rows[y+1];
 		
 		
 		for(var x = 1; x < 17; x++){

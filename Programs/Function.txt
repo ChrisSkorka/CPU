@@ -1,0 +1,30 @@
+	LDB #0
+	LDX #0
+Loop	LDA X,Word
+	CMPA
+	BEQ Next
+	PRA
+	INCX
+	BRA Loop
+
+Next	PRNT #10
+	GTS Fun
+
+	PRNT #'X'
+
+Next2	PRNT #10
+Print	WFI
+	SCNA
+	PRA
+	BRA Print
+
+Finish	END
+
+Fun	PRNT #'F'
+	PRNT #'u'
+	PRNT #'n'
+	RTN
+
+
+	.ORG $10
+Word	.STR "Hello World! :)"

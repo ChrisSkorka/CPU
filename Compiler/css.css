@@ -289,9 +289,15 @@ body {
 	width:50%;
 }
 
-#memoryTable tr td:first-child{
+#memoryTable tr td{
+	font-family: monospace;
+	font-size: larger;
+}
+
+#memoryTable tr td:first-child, #memoryTable tr th{
 	color:#ff8800;
 	padding-right:10px;
+	font-weight: normal;
 }
 
 /*Output --------------------------------------------------------------------------------*/
